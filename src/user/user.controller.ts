@@ -3,7 +3,7 @@ import {createuserdto} from './dto/createuser-dto.js';
 import {updateuserdto} from './dto/updateuser-dto.js';
 import {UserService} from './user.service.js'
 import type { UUID } from 'crypto';
-import { UuidParam } from '../decorators/index.js';
+import { UuidParam, Roles } from '../decorators/index.js';
 
 @Controller('user')
 export class UserController {
@@ -11,6 +11,7 @@ export class UserController {
 constructor (private userservice:UserService){}
 
 @Get()
+@Roles('admin')
 FindAll(){
     return this.userservice.findall();
 }
